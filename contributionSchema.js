@@ -8,8 +8,9 @@ const contributionSchema = new mongoose.Schema({
         required: true,
     },
     faculty: {
-        type: String,
-        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'Faculty',
+        required: true
     },
     academicYear: {
         type: String,
@@ -19,21 +20,26 @@ const contributionSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    abstract: {
+        type: String,
+        required: true,
+    },
+    //document
     article: {
         type: String,
         required: true,
     },
-    //article abstract(optional)
-    abstract: {
-        type: String,
-    },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
     articleType: {
         type: String,
     },
-    images: {
-        type: [String],
-        default: [],
-    },
+    images: [
+        { type: String }
+    ],
+
     submittedDate: {
         type: Date,
         default: Date.now,
@@ -46,13 +52,6 @@ const contributionSchema = new mongoose.Schema({
         type: String,
         enum: ['submitted', 'approved', 'edited'],
         default: 'submitted',
-    },
-    //String Array?
-    comment: {
-        type: String,
-    },
-    commentedDate: {
-        type: Date,
     },
     termsAgreed: {
         type: Boolean,

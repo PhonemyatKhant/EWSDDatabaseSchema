@@ -21,14 +21,17 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         faculty: {
-            type: String,
-            required: true,
+            type: Schema.Types.ObjectId,
+            ref: 'Faculty'
         },
         academicYear: {
             type: String,
             required: true,
         },
-        //login terms and conditions
+        lastLogin: {
+            type: Date,
+            default: Date.now
+        },
         termsAgreed: {
             type: Boolean,
             required: true,
