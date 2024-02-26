@@ -20,6 +20,10 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    viewCount:{
+        type: Number,
+        default: 0
+    },
     commentedAt: {
         type: Date,
         default: Date.now
